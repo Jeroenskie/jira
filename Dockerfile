@@ -8,6 +8,8 @@ ENV JIRA_VERSION 7.2.1
 docker volume create --name bitbucketVolume
 docker run -v bitbucketVolume:/var/atlassian/application-data/bitbucket --name="bitbucket" -d -p 7990:7990 -p 7999:7999 atlassian/bitbucket-server
 
+COPY ./dbconfig.xml /var/atlassian/jira-home/dbconfig.xml
+
 # Install Atlassian JIRA and helper tools and setup initial home 
 # directory structure. 
 RUN set -x \
