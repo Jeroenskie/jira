@@ -6,7 +6,7 @@
   <database-type>postgres72</database-type>
   <schema-name>public</schema-name>
   <jdbc-datasource>
-    <url>jdbc:postgresql://192.168.178.101:5432/jiradb</url>   
+    <url>jdbc:postgresql://192.168.178.100:5432/jiradb</url>   
     <driver-class>org.postgresql.Driver</driver-class>
     <username>jiradb</username>
     <password>Welkom00</password>
