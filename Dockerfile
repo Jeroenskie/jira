@@ -5,7 +5,8 @@ ENV JIRA_HOME /var/atlassian/jira
 ENV JIRA_INSTALL /opt/atlassian/jira 
 ENV JIRA_VERSION 7.2.1 
 
-COPY ./dbconfig.xml /var/atlassian/jira-home/dbconfig.xml
+# Copy databasebconfig settings
+COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml
 
 # Install Atlassian JIRA and helper tools and setup initial home 
 # directory structure. 
