@@ -1,0 +1,5 @@
+# Build images
+sudo docker build -t jeroenskie/jira github.com/Jeroenskie/jira.git
+
+# Run container on port 8080
+sudo docker run --detach --publish 8080:8080 jeroenskie/jira
