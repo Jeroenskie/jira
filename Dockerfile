@@ -1,12 +1,10 @@
+# Install Java 8
 FROM java:8 
-# Configuration variables. 
 
+# Configuration variables. 
 ENV JIRA_HOME /var/atlassian/jira 
 ENV JIRA_INSTALL /opt/atlassian/jira 
 ENV JIRA_VERSION 7.2.1 
-
-# Copy databasebconfig settings
-COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml
 
 # Install Atlassian JIRA and helper tools and setup initial home 
 # directory structure. 
@@ -44,6 +42,9 @@ EXPOSE 8080
 # home directory needs to be persisted as well as parts of the installation 
 # directory due to eg. logs. 
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
+
+# Copy databasebconfig settings
+COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml
 
 # Set the default working directory as the installation directory. 
 WORKDIR /var/atlassian/jira
