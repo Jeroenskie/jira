@@ -30,8 +30,6 @@ RUN set -x \
     && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
     
-     /bin/bash -c "chown -R daemon /var/atlassian/jira; chown -R daemon /opt/atlassian/jira/logs"
-
 # Use the default unprivileged account. This could be considered bad practice 
 # on systems where multiple processes end up being executed by 'daemon' but 
 # here we only ever run one process anyway. 
