@@ -2,6 +2,4 @@
 sudo docker build -t jeroenskie/jira github.com/Jeroenskie/jira.git
 
 # Run container on port 8080 & mount volumes
-docker run -v /data/jira/home:/var/atlassian/jira -v /data/jira/log:/opt/atlassian/jira/logs --name="JIRA" --detach --publish 8080:8080 jeroenskie/jira
-
-
+docker run -u root -v /data/jira/home:/var/atlassian/jira -v /data/jira/log:/opt/atlassian/jira/logs --name="JIRA" --detach --publish 8080:8080 jeroenskie/jira
