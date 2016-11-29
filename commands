@@ -3,4 +3,27 @@ sudo docker build -t jeroenskie/jira github.com/Jeroenskie/jira.git
 
 # Run container on port 8080
 # sudo docker run --detach --publish 8080:8080 jeroenskie/jira
-sudo docker run --detach --publish 8080:8080 -v /var/atlassian/jira:/var/atlassian/jira -v /opt/atlassian/jira jeroenskie/jira:latest
+sudo docker run --name JIRA --detach --publish 8080:8080 -v /var/atlassian/jira:/data/jira jeroenskie/jira:latest
+
+docker run -d -P --name web -v /src/webapp:/webapp:ro training/webapp python app.py
+
+
+docker build -t jeroenskie/jira github.com/Jeroenskie/jira.git
+docker volume create --name JIRAvolume
+docker run -v /data:/var/atlassian/jira --name="JIRA" --detach --publish 8080:8080 jeroenskie/jira
+
+docker create -v /data --name datacontainer atlassian/jira
+----------------------
+docker create --name jira-data jleight/atlassian-jira
+docker run --name jira --volumes-from jira-data -p 8080:8080 jleight/atlassian-jira
+docker run --name jira --volumes-from jira-data -p 8080:8080 -e TC_ROOTPATH=/jira jleight/atlassian-jira
+
+docker create -v /data/jira --name jira-data 
+
+
+$ docker volume create -d local --opt o=size=20GB jira-data
+docker volume create --name jira-data
+
+$ docker run --volumes-from jira-data:/data/jira --name JIRA --detach --publish 8080:8080 jeroenskie/jira
+
+docker run -d --publish 8080:8080 --name jira-data -v /data/jira jeroenskie/jira
