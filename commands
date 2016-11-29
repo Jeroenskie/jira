@@ -27,3 +27,7 @@ docker volume create --name jira-data
 $ docker run --volumes-from jira-data:/data/jira --name JIRA --detach --publish 8080:8080 jeroenskie/jira
 
 docker run -d --publish 8080:8080 --name jira-data -v /data/jira jeroenskie/jira
+
+docker run -v /data/jira/home:/var/atlassian/jira -v /data/jira/log:
+
+
