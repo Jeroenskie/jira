@@ -30,9 +30,6 @@ RUN set -x \
     && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
 
-# Copy databasebconfig settings
-COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml"
-
 # Use the default unprivileged account. This could be considered bad practice 
 # on systems where multiple processes end up being executed by 'daemon' but 
 # here we only ever run one process anyway. 
@@ -45,6 +42,9 @@ EXPOSE 8080
 # home directory needs to be persisted as well as parts of the installation 
 # directory due to eg. logs. 
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
+
+# Copy databasebconfig settings
+COPY ./dbconfig.xml /var/atlassian/jira/dbconfig.xml
 
 # Set the default working directory as the installation directory. 
 WORKDIR /var/atlassian/jira
