@@ -29,6 +29,8 @@ RUN set -x \
     && sed --in-place          "s/java version/openjdk version/g" "${JIRA_INSTALL}/bin/check-java.sh" \
     && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
+    
+     /bin/bash -c "chown -R daemon /var/atlassian/jira; chown -R daemon /opt/atlassian/jira/logs"
 
 # Use the default unprivileged account. This could be considered bad practice 
 # on systems where multiple processes end up being executed by 'daemon' but 
@@ -44,13 +46,14 @@ EXPOSE 8080
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
 
 # Copy databasebconfig settings
-COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml
+COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml"
+RUN chown -R daemon:daemon "${JIRA_HOME}/dbconfig.xml"
 
 # Set the default working directory as the installation directory. 
 WORKDIR /var/atlassian/jira
 
 COPY "docker-entrypoint.sh" "/"
-# RUN chmod +x /docker-entrypoint.sh
-# ENTRYPOINT ["/docker-entrypoint.sh"]
+RUN chmod +x ./docker-entrypoint.sh
+ENTRYPOINT ["./docker-entrypoint.sh"]
 # Run Atlassian JIRA as a foreground process by default. 
 CMD ["/opt/atlassian/jira/bin/catalina.sh", "run"]
