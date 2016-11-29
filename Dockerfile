@@ -31,7 +31,7 @@ RUN set -x \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
 
 # Copy databasebconfig settings
-COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml
+COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml"
 
 # Use the default unprivileged account. This could be considered bad practice 
 # on systems where multiple processes end up being executed by 'daemon' but 
