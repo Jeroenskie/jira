@@ -1,3 +1,4 @@
+#Test
 # Install Java 8
 FROM java:8 
 
