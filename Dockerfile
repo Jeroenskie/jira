@@ -39,15 +39,6 @@ RUN set -x \
     && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
 
-# Copy databasebconfig settings
-#COPY ./dbconfig.xml ./dbconfig.xml
-COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml"
-
-# Wat doet dit precies?
-COPY "docker-entrypoint.sh" "/"
-RUN chmod +x /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
 # Expose default HTTP connector port. 
 EXPOSE 8080 
 
@@ -56,8 +47,15 @@ EXPOSE 8080
 # directory due to eg. logs. 
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
 
+# Copy databasebconfig settings
+COPY ./dbconfig.xml /var/atlassian/jira/dbconfig.xml
+
 # Set the default working directory as the installation directory. 
-WORKDIR ${JIRA_HOME}
+WORKDIR /var/atlassian/jira
+
+COPY "docker-entrypoint.sh" "/"
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Run Atlassian JIRA as a foreground process by default. 
 CMD ["/opt/atlassian/jira/bin/catalina.sh", "run"]
