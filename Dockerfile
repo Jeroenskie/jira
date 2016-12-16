@@ -48,7 +48,7 @@ COPY "docker-entrypoint.sh" "/"
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
-# Expose default HTTP connector port. 
+# Expose default HTTP connector port
 EXPOSE 8080 
 
 # Set volume mount points for installation and home directory. Changes to the 
