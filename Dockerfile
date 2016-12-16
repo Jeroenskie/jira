@@ -13,7 +13,7 @@ ENV JAVA_BUILD b15
 # Configuration variables JIRA
 ENV JIRA_HOME /var/atlassian/jira 
 ENV JIRA_INSTALL /opt/atlassian/jira 
-ENV JIRA_VERSION 7.2.3
+ENV JIRA_VERSION 7.2.4
 
 # Install JAVA 
 # Install Atlassian JIRA and helper tools and setup initial home 
@@ -21,7 +21,7 @@ ENV JIRA_VERSION 7.2.3
 RUN set -x \
     && apt-get update --quiet \
     && apt-get install --quiet --yes wget \
-    && wget --quiet --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}-${JAVA_BUILD}/jdk-${JAVA_VERSION}-linux-x64.tar.gz" \
+    && wget --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}-${JAVA_BUILD}/jdk-${JAVA_VERSION}-linux-x64.tar.gz" \
     && mkdir -p                "${JAVA_HOME}" \
     && tar -zxf "jdk-${JAVA_VERSION}-linux-x64.tar.gz" --directory "${JAVA_HOME}" --strip-components=1 --no-same-owner \
     && rm                      "./jdk-${JAVA_VERSION}-linux-x64.tar.gz" \
@@ -29,9 +29,9 @@ RUN set -x \
     && mkdir -p                "${JIRA_HOME}/caches/indexes" \
     && chmod -R 700            "${JIRA_HOME}" \
     && mkdir -p                "${JIRA_INSTALL}/conf/Catalina" \
-    && wget                    "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-core-${JIRA_VERSION}.tar.gz" --quiet \
-    && tar -zxf                "atlassian-jira-core-${JIRA_VERSION}.tar.gz" --directory "${JIRA_INSTALL}" --strip-components=1 --no-same-owner \
-    && rm                      "./atlassian-jira-core-${JIRA_VERSION}.tar.gz" \
+    && wget                    "https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}.tar.gz" \
+    && tar -zxf                "atlassian-jira-softare-${JIRA_VERSION}.tar.gz" --directory "${JIRA_INSTALL}" --strip-components=1 --no-same-owner \
+    && rm                      "./atlassian-jira-software-${JIRA_VERSION}.tar.gz" \
     && chmod -R 700            "${JIRA_INSTALL}/conf" \
     && chmod -R 700            "${JIRA_INSTALL}/logs" \
     && chmod -R 700            "${JIRA_INSTALL}/temp" \
