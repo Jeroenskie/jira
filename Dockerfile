@@ -48,7 +48,7 @@ EXPOSE 8080
 VOLUME ["/var/atlassian/jira", "/opt/atlassian/jira/logs"]
 
 # Copy databasebconfig settings
-COPY "dbconfig.xml" "/var/atlassian/jira"
+COPY ./dbconfig.xml /var/atlassian/jira
 
 # Set the default working directory as the installation directory. 
 WORKDIR /var/atlassian/jira
