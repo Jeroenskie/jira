@@ -54,7 +54,7 @@ COPY ./dbconfig.xml /var/atlassian/jira
 WORKDIR /var/atlassian/jira
 
 COPY ./docker-entrypoint.sh /
-#RUN chmod +x /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Run Atlassian JIRA as a foreground process by default. 
