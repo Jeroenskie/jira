@@ -53,9 +53,9 @@ COPY "dbconfig.xml" "/var/atlassian/jira"
 # Set the default working directory as the installation directory. 
 WORKDIR /var/atlassian/jira
 
-#COPY "docker-entrypoint.sh" "/"
+COPY ./docker-entrypoint.sh /
 #RUN chmod +x /docker-entrypoint.sh
-#ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # Run Atlassian JIRA as a foreground process by default. 
 CMD ["/opt/atlassian/jira/bin/catalina.sh", "run"]
