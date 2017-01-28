@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 # Configuration variables JAVA
 ENV PATH ["$PATH:/opt/java/bin:/opt/java/jre/bin"]
 ENV JAVA_HOME /opt/java
-ENV JAVA_VERSION 8u112
-ENV JAVA_BUILD b15
+ENV JAVA_VERSION 8u121
+ENV JAVA_BUILD b13
 
 # Configuration variables JIRA
 ENV JIRA_HOME /var/atlassian/jira 
