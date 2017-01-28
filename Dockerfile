@@ -13,7 +13,7 @@ ENV JAVA_BUILD b15
 # Configuration variables JIRA
 ENV JIRA_HOME /var/atlassian/jira 
 ENV JIRA_INSTALL /opt/atlassian/jira 
-ENV JIRA_VERSION 7.2.6
+ENV JIRA_VERSION 7.2.7
 
 # Install JAVA 
 # Install Atlassian JIRA and helper tools and setup initial home 
