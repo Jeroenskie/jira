@@ -17,7 +17,7 @@ ENV JIRA_VERSION 7.3.0
 
 # Install JAVA 
 # Install Atlassian JIRA and helper tools and setup initial home 
-# directory structure. 
+# directory structure 
 RUN set -x \
     && apt-get update --quiet \
     && apt-get install --quiet --yes wget \
