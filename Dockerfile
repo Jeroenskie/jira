@@ -21,7 +21,7 @@ ENV JIRA_VERSION 7.3.0
 RUN set -x \
     && apt-get update --quiet \
     && apt-get install --quiet --yes wget \
-    && wget --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}-${JAVA_BUILD}/jdk-${JAVA_VERSION}-linux-x64.tar.gz" \
+    && wget --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}-${JAVA_BUILD}/e9e7ea248e2c4826b92b3f075a80e441/jdk-${JAVA_VERSION}-linux-x64.tar.gz" \
     && mkdir -p                "${JAVA_HOME}" \
     && tar -zxf "jdk-${JAVA_VERSION}-linux-x64.tar.gz" --directory "${JAVA_HOME}" --strip-components=1 --no-same-owner \
     && rm                      "./jdk-${JAVA_VERSION}-linux-x64.tar.gz" \
