@@ -15,7 +15,7 @@ ENV JIRA_HOME /var/atlassian/jira
 ENV JIRA_INSTALL /opt/atlassian/jira 
 ENV JIRA_VERSION 7.3.1
 
-#Make SQL database backup
+#Make SQL database backup.
 # RUN set -x \
 #	&& mkdir /tmp/`date +\%Y\%m\%d`_BackupJIRAdb${JIRA_VERSION} \
 #	&& pg_dump -h 192.168.178.100 -Fc -o -U jiradbuser jiradb | gzip > /tmp/`date +\%Y\%m\%d`_BackupJIRAdb${JIRA_VERSION}/jiradb_FULL.sql.gz
