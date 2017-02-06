@@ -13,7 +13,16 @@ ENV JAVA_BUILD b13
 # Configuration variables JIRA
 ENV JIRA_HOME /var/atlassian/jira 
 ENV JIRA_INSTALL /opt/atlassian/jira 
-ENV JIRA_VERSION 7.3.0
+ENV JIRA_VERSION 7.3.1
+
+#Make SQL database backup
+RUN set -x \
+	&& sudo -i -u postgres \
+	&& mkdir /var/backups/`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION} \
+	&& pg_dump -U postgres jiradb | gzip > /var/backups`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION}/jiradb_FULL.sql.gz \
+	&& pg_dump -s -U postgres jiradb | gzip > /var/backups`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION}/jiradb_SCHEMA.sql.gz \
+	&& pg_dump -a -U postgres jiradb | gzip > /var/backups`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION}/jiradb_DATA.sql.gz \
+	$$ exit
 
 # Install JAVA 
 # Install Atlassian JIRA and helper tools and setup initial home 
@@ -39,8 +48,8 @@ RUN set -x \
     && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
 
+	
 # Copy databasebconfig settings
-#COPY ./dbconfig.xml ./dbconfig.xml
 COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml"
 
 # Wat doet dit precies?
