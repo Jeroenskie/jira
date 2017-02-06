@@ -17,12 +17,8 @@ ENV JIRA_VERSION 7.3.1
 
 #Make SQL database backup
 RUN set -x \
-	&& sudo -i -u postgres \
 	&& mkdir /var/backups/`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION} \
-	&& pg_dump -U postgres jiradb | gzip > /var/backups`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION}/jiradb_FULL.sql.gz \
-	&& pg_dump -s -U postgres jiradb | gzip > /var/backups`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION}/jiradb_SCHEMA.sql.gz \
-	&& pg_dump -a -U postgres jiradb | gzip > /var/backups`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION}/jiradb_DATA.sql.gz \
-	$$ exit
+	&& pg_dump -h 192.168.178.100 -Fc -o -U jiradbuser jiradb | gzip > /tmp/`date +\%Y\%m\%d`_BackupJIRAdb{JIRA_VERSION}/jiradb_FULL.sql.gz
 
 # Install JAVA 
 # Install Atlassian JIRA and helper tools and setup initial home 
