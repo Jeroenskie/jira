@@ -44,6 +44,7 @@ RUN set -x \
     && echo -e                 "\njira.home=$JIRA_HOME" >> "${JIRA_INSTALL}/atlassian-jira/WEB-INF/classes/jira-application.properties" \
     && touch -d "@0"           "${JIRA_INSTALL}/conf/server.xml"
 	
+
 # Copy databasebconfig settings
 COPY ./dbconfig.xml "${JIRA_HOME}/dbconfig.xml"
 
