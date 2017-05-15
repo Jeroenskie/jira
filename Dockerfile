@@ -13,7 +13,7 @@ ENV JAVA_BUILD b13
 # Configuration variables JIRA
 ENV JIRA_HOME /var/atlassian/jira 
 ENV JIRA_INSTALL /opt/atlassian/jira 
-ENV JIRA_VERSION 7.3.3
+ENV JIRA_VERSION 7.3.6
 
 #Make SQL database backup.
 # RUN set -x \
