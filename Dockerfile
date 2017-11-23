@@ -7,13 +7,13 @@ ENV DEBIAN_FRONTEND noninteractive
 # Configuration variables JAVA
 ENV PATH ["$PATH:/opt/java/bin:/opt/java/jre/bin"]
 ENV JAVA_HOME /opt/java
-ENV JAVA_VERSION 8u121
-ENV JAVA_BUILD b13
+ENV JAVA_VERSION 8u152
+ENV JAVA_BUILD b16
 
 # Configuration variables JIRA
 ENV JIRA_HOME /var/atlassian/jira 
 ENV JIRA_INSTALL /opt/atlassian/jira 
-ENV JIRA_VERSION 7.3.6
+ENV JIRA_VERSION 7.6.0
 
 #Make SQL database backup.
 # RUN set -x \
